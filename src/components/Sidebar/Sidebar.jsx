@@ -59,10 +59,10 @@ export default class Sidebar extends React.Component {
                         {
                             routes.map((route) => (
                                 <div className='nav__list-inner' key={route.title} onClick={() => this.goToRoute(route.path)}>
-                                    <a className={`nav__list ${route.nameClass ? 'active' : null}`} href="#">
+                                    <button className={`nav__list ${route.nameClass ? 'active' : null}`} href="#">
                                         <FontAwesomeIcon icon={route.icon} />
                                         <span className={`nav__list-name ${!isOpened ? 'animNav' : false}`}>{route.title}</span>
-                                    </a>
+                                    </button>
                                 </div>
                             ))
                         }
@@ -71,10 +71,10 @@ export default class Sidebar extends React.Component {
                             {
                                 bottomRoutes.map((route) => (
                                     <div className='nav__list-inner' key={route.title} onClick={() => this.goToRoute(route.path)}>
-                                        <a className='nav__list' href="#">
+                                        <button className='nav__list' href="#">
                                             <FontAwesomeIcon icon={route.icon} />
                                             <span className={`nav__list-name ${!isOpened ? 'animNav' : false}`}>{route.title}</span>
-                                        </a>
+                                        </button>
                                     </div>
                                 ))
                             }
