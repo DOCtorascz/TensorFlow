@@ -86,5 +86,9 @@ $colorActive: red;
 .animNav {
   animation: listNameMin 500ms forwards;
 }
+.open {
+  animation: sidebarMin 2s reverse forwards !important;
+}
+
 
 @import 'animation';

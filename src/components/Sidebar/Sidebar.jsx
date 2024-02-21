@@ -38,10 +38,11 @@ export default class Sidebar extends React.Component {
     render() {
         const { isOpened } = this.state;
         const containerClassnames = classnames('sidebar', { opened: isOpened });
+        let statusBlock = isOpened ? null : 'sidebarMin 2s forwards';
 
         return (
             <div className="contaner">
-                <div className={containerClassnames} style={{animation: isOpened ? false : 'sidebarMin 2s forwards'}}>
+                <div className={containerClassnames} style={{ animation: statusBlock }}>
                     <div className='header__inner'>
                         <a className='header__logo-item' href="#">
                             <img
