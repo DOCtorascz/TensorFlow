@@ -5,12 +5,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import logo from '../../assets/logo.png'
 
 const routes = [
-    { title: 'Home', icon: 'fas-solid fa-house', path: '/' },
-    { title: 'Sales', icon: 'chart-line', path: '/sales' },
-    { title: 'Costs', icon: 'chart-column', path: '/costs' },
-    { title: 'Payments', icon: 'wallet', path: '/payments' },
-    { title: 'Finances', icon: 'chart-pie', path: '/finances' },
-    { title: 'Messages', icon: 'envelope', path: '/messages' },
+    { title: 'Home', icon: 'fas-solid fa-house', path: '/', nameClass: null },
+    { title: 'Sales', icon: 'chart-line', path: '/sales', nameClass: 'active' },
+    { title: 'Costs', icon: 'chart-column', path: '/costs', nameClass: null },
+    { title: 'Payments', icon: 'wallet', path: '/payments', nameClass: null },
+    { title: 'Finances', icon: 'chart-pie', path: '/finances', nameClass: null },
+    { title: 'Messages', icon: 'envelope', path: '/messages', nameClass: null },
 ];
 
 const bottomRoutes = [
@@ -28,7 +28,7 @@ export default class Sidebar extends React.Component {
     }
 
     toggleSidebar = () => {
-        this.setState((state) => ({ isOpened: !state.isOpened }) );
+        this.setState((state) => ({ isOpened: !state.isOpened }));
     };
 
     goToRoute = (path) => {
@@ -40,38 +40,46 @@ export default class Sidebar extends React.Component {
         const containerClassnames = classnames('sidebar', { opened: isOpened });
 
         return (
-            <div className={ containerClassnames }>
-                <div>
-                    <img
-                        src={ logo }
-                        alt="TensorFlow logo"
-                    />
-                    <span>TensorFlow</span>
-                    <button onClick={ this.toggleSidebar }>
-                        <FontAwesomeIcon icon={ isOpened ? 'angle-left' : 'angle-right' } />
-                    </button>
-                </div>
+            <div className="contaner">
+                <div className={containerClassnames} style={{animation: isOpened ? false : 'sidebarMin 2s forwards'}}>
+                    <div className='header__inner'>
+                        <a className='header__logo-item' href="#">
+                            <img
+                                src={logo}
+                                alt="TensorFlow logo"
+                            />
+                            <span className={`header__logo-textContent ${!isOpened ? 'animText' : false}`}>TensorFlow</span>
+                        </a>
+                        <button className={`header__btn ${!isOpened ? 'animBtn' : false}`} onClick={this.toggleSidebar}>
+                            <FontAwesomeIcon icon={isOpened ? 'angle-left' : 'angle-right'} />
+                        </button>
+                    </div>
 
-                <div>
-                    {
-                        routes.map((route) => (
-                            <div key={ route.title } onClick={ () => this.goToRoute(route.path) }>
-                                <FontAwesomeIcon icon={ route.icon } />
-                                <span>{ route.title }</span>
-                            </div>
-                        ))
-                    }
-                </div>
+                    <nav className='nav'>
+                        {
+                            routes.map((route) => (
+                                <div className='nav__list-inner' key={route.title} onClick={() => this.goToRoute(route.path)}>
+                                    <a className={`nav__list ${route.nameClass ? 'active' : null}`} href="#">
+                                        <FontAwesomeIcon icon={route.icon} />
+                                        <span className={`nav__list-name ${!isOpened ? 'animNav' : false}`}>{route.title}</span>
+                                    </a>
+                                </div>
+                            ))
+                        }
 
-                <div>
-                    {
-                        bottomRoutes.map((route) => (
-                            <div key={ route.title } onClick={ () => this.goToRoute(route.path) }>
-                                <FontAwesomeIcon icon={ route.icon } />
-                                <span>{ route.title }</span>
-                            </div>
-                        ))
-                    }
+                        <div className='nav__sub'>
+                            {
+                                bottomRoutes.map((route) => (
+                                    <div className='nav__list-inner' key={route.title} onClick={() => this.goToRoute(route.path)}>
+                                        <a className='nav__list' href="#">
+                                            <FontAwesomeIcon icon={route.icon} />
+                                            <span className={`nav__list-name ${!isOpened ? 'animNav' : false}`}>{route.title}</span>
+                                        </a>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    </nav>
                 </div>
             </div>
         );

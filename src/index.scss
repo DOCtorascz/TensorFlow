@@ -12,3 +12,44 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+img {
+  vertical-align: top;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+button {
+  background: none;
+  cursor: pointer;
+  border: none;
+  position: relative;
+}
+
+.contaner {
+  max-width: 320px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+@import 'components/Sidebar/sidebar'

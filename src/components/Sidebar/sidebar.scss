@@ -1,0 +1,89 @@
+$bgActive: rgb(255 255 255 / 18%);
+$colorActive: red;
+
+.sidebar {
+  height: 100vh;
+  background: black;
+  border: 2px solid white;
+  padding: 10px 5px;
+  border-radius: 25px;
+  box-shadow: -1px 4px 20px;
+
+  .header__inner {
+    margin-bottom: 30px;
+    position: relative;
+
+    .header__logo-item {
+      display: inline-flex;
+      align-items: center;
+      margin-right: 5px;
+    }
+
+    .header__logo-item img {
+      width: 100px;
+      max-width: 100%;
+    }
+
+    .header__logo-textContent {
+      color: white;
+    }
+
+    .header__btn {
+      background: #655b5b;
+      border-radius: 25px;
+      padding: 5px 9px;
+      position: absolute;
+      right: -12px;
+      top: 37px;
+    }
+  }
+
+  .nav {
+    padding: 0 20px;
+
+    .nav__list-inner {
+      margin-bottom: 10px;
+    }
+
+    .nav__list {
+      display: inline-block;
+      width: 100%;
+      padding: 5px 10px;
+      border-radius: 10px;
+      background: transparent;
+      color: white;
+    }
+
+    .active {
+      background: $bgActive;
+      color: $colorActive;
+    }
+
+    .nav__list:hover {
+      background: $bgActive;
+      color: $colorActive;
+    }
+
+    .nav__list-name {
+      margin-left: 20px;
+    }
+
+    .nav__sub {
+      padding-top: 350px;
+    }
+  }
+}
+
+.animText {
+  animation: nameMin 500ms forwards;
+}
+
+.animBtn {
+  animation: btnMin 500ms forwards;
+}
+
+.animNav {
+  animation: listNameMin 500ms forwards;
+}
+
+@import 'animation';
