@@ -25,10 +25,20 @@ export default class Sidebar extends React.Component {
         this.state = {
             isOpened: true,
         };
+
+        this.elemAnimation = {
+            isAnimation: false,
+        };
     }
 
-    toggleSidebar = () => {
+    toggleSidebar = (event) => {
         this.setState((state) => ({ isOpened: !state.isOpened }));
+        this.elemAnimation = {
+            SIDEBAR: event.target.closest('.sidebar'),
+            BTN: event.target.closest('.header__btn'),
+            LOGOTRANSPARENT: event.target.closest('.sidebar').children[0].children[0].children[1],
+            TEXTTRANSPARENT: event.target.closest('.sidebar').children[1],
+        }
     };
 
     goToRoute = (path) => {
@@ -37,19 +47,35 @@ export default class Sidebar extends React.Component {
 
     render() {
         const { isOpened } = this.state;
+        const isAnimation = this.elemAnimation;
+
+        if (isAnimation.SIDEBAR) {
+            if (isAnimation.SIDEBAR.offsetWidth === 93) {
+                isAnimation.SIDEBAR.style.width = '300px';
+                isAnimation.LOGOTRANSPARENT.className = 'header__logo-textContent animLogoOpen';
+                isAnimation.BTN.style.right = '-12px'
+                isAnimation.TEXTTRANSPARENT.className = 'nav animMenuOpen';
+            } else {
+                isAnimation.SIDEBAR.style.width = '93px';
+                isAnimation.LOGOTRANSPARENT.className = 'header__logo-textContent animLogoClose';
+                isAnimation.BTN.style.right = '-50px'
+                isAnimation.TEXTTRANSPARENT.className = 'nav animMenuClose';
+            }
+
+        }
+
         const containerClassnames = classnames('sidebar', { opened: isOpened });
-        let statusBlock = isOpened ? null : 'sidebarMin 2s forwards';
 
         return (
             <div className="contaner">
-                <div className={containerClassnames} style={{ animation: statusBlock }}>
+                <div className={containerClassnames} >
                     <div className='header__inner'>
                         <a className='header__logo-item' href="#">
                             <img
                                 src={logo}
                                 alt="TensorFlow logo"
                             />
-                            <span className={`header__logo-textContent ${!isOpened ? 'animText' : false}`}>TensorFlow</span>
+                            <span className='header__logo-textContent'>TensorFlow</span>
                         </a>
                         <button className={`header__btn ${!isOpened ? 'animBtn' : false}`} onClick={this.toggleSidebar}>
                             <FontAwesomeIcon icon={isOpened ? 'angle-left' : 'angle-right'} />
@@ -62,7 +88,7 @@ export default class Sidebar extends React.Component {
                                 <div className='nav__list-inner' key={route.title} onClick={() => this.goToRoute(route.path)}>
                                     <button className={`nav__list ${route.nameClass ? 'active' : null}`} href="#">
                                         <FontAwesomeIcon icon={route.icon} />
-                                        <span className={`nav__list-name ${!isOpened ? 'animNav' : false}`}>{route.title}</span>
+                                        <span className='nav__list-name'>{route.title}</span>
                                     </button>
                                 </div>
                             ))

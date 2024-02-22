@@ -8,6 +8,8 @@ $colorActive: red;
   padding: 10px 5px;
   border-radius: 25px;
   box-shadow: -1px 4px 20px;
+  transition: width 2s ease-in-out;
+  width: 100%;
 
   .header__inner {
     margin-bottom: 30px;
@@ -49,7 +51,7 @@ $colorActive: red;
       display: inline-block;
       text-align: left;
       width: 100%;
-      padding: 10px;
+      padding: 11px 10px 0px 10px;
       border-radius: 10px;
       background: transparent;
       color: white;
@@ -70,21 +72,32 @@ $colorActive: red;
     }
 
     .nav__sub {
-      padding-top: 350px;
+      padding-top: 250px;
     }
   }
 }
 
-.animText {
-  animation: nameMin 500ms forwards;
+.animLogoClose {
+  transition: 1s ease-in-out;
+  visibility: hidden;
+  opacity: 0;
 }
 
-.animBtn {
-  animation: btnMin 500ms forwards;
+.animLogoOpen {
+  transition: 5s ease-in-out;
+  visibility: visible;
+  opacity: 1;
 }
 
-.animNav {
-  animation: listNameMin 500ms forwards;
+
+.animMenuClose span {
+  transition: 1s ease-in-out;
+  visibility: hidden;
+  opacity: 0;
 }
 
-@import 'animation';
+.animMenuOpen span {
+  transition: 5s ease-in-out;
+  visibility: visible;
+  opacity: 1;
+}
