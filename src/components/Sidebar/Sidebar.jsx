@@ -92,6 +92,7 @@ export default class Sidebar extends React.Component {
                                     <button className={`nav__list ${route.nameClass ? 'active' : null}`} href="#">
                                         <FontAwesomeIcon icon={route.icon} />
                                         <span className='nav__list-name'>{route.title}</span>
+                                        <div className='nav__list-sub-name'>{route.title}</div>
                                     </button>
                                 </div>
                             ))
@@ -104,6 +105,7 @@ export default class Sidebar extends React.Component {
                                         <button className='nav__list' href="#">
                                             <FontAwesomeIcon icon={route.icon} />
                                             <span className={`nav__list-name ${!isOpened ? 'animNav' : false}`}>{route.title}</span>
+                                            <div className='nav__list-sub-name'>{route.title}</div>
                                         </button>
                                     </div>
                                 ))
