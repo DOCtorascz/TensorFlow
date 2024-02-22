@@ -48,15 +48,18 @@ export default class Sidebar extends React.Component {
     render() {
         const { isOpened } = this.state;
         const isAnimation = this.elemAnimation;
+        const numWidthMini = 90;
 
         if (isAnimation.SIDEBAR) {
-            if (isAnimation.SIDEBAR.offsetWidth === 93) {
+            if (isAnimation.SIDEBAR.offsetWidth === numWidthMini) {
                 isAnimation.SIDEBAR.style.width = '300px';
                 isAnimation.LOGOTRANSPARENT.className = 'header__logo-textContent animLogoOpen';
                 isAnimation.BTN.style.right = '-12px'
-                isAnimation.TEXTTRANSPARENT.className = 'nav animMenuOpen';
+                setTimeout(() => {
+                    isAnimation.TEXTTRANSPARENT.className = 'nav animMenuOpen';
+                }, 1000)
             } else {
-                isAnimation.SIDEBAR.style.width = '93px';
+                isAnimation.SIDEBAR.style.width = '90px';
                 isAnimation.LOGOTRANSPARENT.className = 'header__logo-textContent animLogoClose';
                 isAnimation.BTN.style.right = '-50px'
                 isAnimation.TEXTTRANSPARENT.className = 'nav animMenuClose';
